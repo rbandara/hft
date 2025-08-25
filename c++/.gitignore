@@ -1,0 +1,126 @@
+# =========================
+# macOS
+# =========================
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.Spotlight-V100
+.Trashes
+*.swp
+
+# =========================
+# C / C++
+# =========================
+# Compiled object files
+*.o
+*.obj
+*.lo
+*.la
+*.al
+*.libs
+
+# Compiled dynamic libraries
+*.so
+*.so.*
+*.dylib
+*.dll
+
+# Compiled static libraries
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+*.i*86
+*.x86_64
+*.hex
+
+# Build directories
+/build/
+bin/
+debug/
+release/
+
+# =========================
+# Java
+# =========================
+*.class
+*.jar
+*.war
+*.ear
+*.nar
+hs_err_pid*
+replay_pid*
+*.log
+
+# Maven / Gradle
+target/
+build/
+out/
+.gradle/
+.mvn/
+!gradle-wrapper.jar
+
+# IDE settings
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+*.classpath
+*.project
+.settings/
+
+# =========================
+# Python
+# =========================
+# Byte-compiled / cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.env
+.venv
+env/
+venv/
+ENV/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# Distribution / packaging
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Unit test / coverage reports
+.pytest_cache/
+.coverage
+.tox/
+.mypy_cache/
+.pyre/
+.dmypy.json
+.pytype/
+
+# =========================
+# Logs & misc
+# =========================
+*.log
+*.tmp
+*.swp
+*.swo
+*.bak
+
+# =========================
+# Custom
+# =========================
+# Ignore local configs
+*.local
+*.secret
+
