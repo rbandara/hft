@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>C++ Lock-Free Order Book Sample</title>
+  <link rel="stylesheet" href="../../../../rbandara.github.io/style.css">
+</head>
+<body>
+  <header>
+    <h1>C++ Lock-Free Order Book Sample</h1>
+    <p>High-Performance Trading Code Example</p>
+  </header>
+  <main>
+    <section id="about">
+      <h2>Overview</h2>
+      <p>
+        This sample demonstrates a simple lock-free order book using atomic operations. It shows how HFT systems update price levels safely and efficiently in a concurrent environment.
+      </p>
+    </section>
+    <section id="run">
+      <h2>How to Run</h2>
+      <pre><code class="language-bash">g++ order_book.cpp -o order_book -std=c++11
+./order_book
+</code></pre>
+      <p>
+        You will see price levels and their sizes updated atomically, simulating HFT order book updates.
+      </p>
+    </section>
+   
+    <section id="source">
+      <h2>Source Code</h2>
+      <pre><code class="language-cpp">// order_book.cpp
+#include &lt;atomic&gt;
+#include &lt;array&gt;
+#include &lt;iostream&gt;
+
+struct PriceLevel {
+    std::atomic&lt;int&gt; size;
+    int price;
+    PriceLevel() : size(0), price(0) {}
+};
+
+class OrderBook {
+    std::array&lt;PriceLevel, 10&gt; levels;
+public:
+    void add_order(int idx, int price, int qty) {
+        levels[idx].price = price;
+        levels[idx].size.fetch_add(qty, std::memory_order_relaxed);
+    }
+    void print() {
+        for (int i = 0; i &lt; levels.size(); ++i) {
+            std::cout &lt;&lt; "Level " &lt;&lt; i &lt;&lt; ": Price=" &lt;&lt; levels[i].price
+                      &lt;&lt; " Size=" &lt;&lt; levels[i].size.load() &lt;&lt; std::endl;
+        }
+    }
+};
+
+int main() {
+    OrderBook book;
+    book.add_order(0, 100, 50);
+    book.add_order(1, 101, 75);
+    book.print();
+    return 0;
+}
+</code></pre>
+    </section>
+    <section id="github">
+      <h2>GitHub Repository</h2>
+      <p>
+        Explore more HFT code samples and advanced concepts at:<br>
+        <a href="https://github.com/rbandara/hft/c++" target="_blank">https://github.com/rbandara/hft/c++</a>
+      </p>
+    </section>
+    <section id="learned">
+      <h2>What is Learned</h2>
+      <ul>
+        <li>How to use <code>std::atomic</code> for thread-safe, lock-free updates.</li>
+        <li>How order books are structured for high-frequency trading.</li>
+        <li>Why atomic operations are important for ultra-low latency systems.</li>
+        <li>Basics of concurrent programming in C++ for real-time trading.</li>
+      </ul>
+    </section>
+  </main>
+  <footer>
+    <p>&copy; 2025 Ravindra Bandara</p>
+  </footer>
+</body>
+</html>
